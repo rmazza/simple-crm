@@ -22,4 +22,8 @@ export class CustomersComponent implements OnInit {
   }
 
   selectCustomer(customer: Customer) { this.selectedCustomer = customer; }
+
+  getJson(): string {
+    return JSON.stringify(this.selectedCustomer);
+  }
 }
