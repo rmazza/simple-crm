@@ -1,1 +1,3 @@
-<p>customers works!</p>
+<ul>
+  <li *ngFor="let customer of customers" [value]="customer.lastName">{{ customer.firstName }}</li>
+</ul>
