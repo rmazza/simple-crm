@@ -17,5 +17,10 @@ namespace SimpleCRM.Data
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
+
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<EmailAddress> EmailAddresses { get; set; }
+
+        public DbSet<EmailType> EmailTypes { get; set; }
     }
 }

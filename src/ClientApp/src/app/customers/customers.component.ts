@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { CustomerService } from '../services/customer/customer.service';
+import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { Customer } from '../entities/customer';
 
 @Component({

@@ -72,4 +72,6 @@
     </ItemGroup>
   </Target>
 
+  <ProjectExtensions><VisualStudio><UserProperties clientapp_4src_4assets_4test-customer-data_1json__JsonSchema="http://json.schemastore.org/BizTalkServerApplicationSchema" /></VisualStudio></ProjectExtensions>
+
 </Project>

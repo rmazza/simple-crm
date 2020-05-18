@@ -17,12 +17,11 @@ namespace SimpleCRM.Graphql
         public MySchema()
         {
             this._schema = Schema.For(@"
-                type Book {
+                type Customer {
                   id: ID
-                  name: String,
-                  genre: String,
-                  published: Date,
-                  Author: Author
+                  firstName: String!,
+                  lastName: String!,
+                  middleName: Date
                 }
                 
                 type Author {
@@ -36,10 +35,7 @@ namespace SimpleCRM.Graphql
                 }
                 
                 type Query {
-                    books: [Book]
-                    author(id: ID): Author,
-                    authors: [Author]
-                    hello: String
+                    customers: [Customer]
                 }
             ", _ =>
             {

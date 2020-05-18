@@ -17,6 +17,7 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
 import { UsersComponent } from './users/users.component';
 import { AddUserComponent } from './users/add-user/add-user.component';
 import { CustomersComponent } from './customers/customers.component';
+import { CustomerDetailComponent } from './customers/customer-detail/customer-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CustomersComponent } from './customers/customers.component';
     FetchDataComponent,
     UsersComponent,
     AddUserComponent,
-    CustomersComponent
+    CustomersComponent,
+    CustomerDetailComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -44,7 +46,8 @@ import { CustomersComponent } from './customers/customers.component';
           component: AddUserComponent
         }], canActivate: [AuthorizeGuard]
       },
-      { path: 'customers', component: CustomersComponent, canActivate: [AuthorizeGuard] }
+      { path: 'customers', component: CustomersComponent, canActivate: [AuthorizeGuard] },
+      { path: 'customers/:customerId', component: CustomerDetailComponent, canActivate: [AuthorizeGuard]}
     ])
   ],
   providers: [

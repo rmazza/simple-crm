@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 import { Customer } from '../../entities/customer';
 
@@ -6,14 +9,29 @@ import { Customer } from '../../entities/customer';
   providedIn: 'root'
 })
 export class CustomerService {
-  private customers: Customer[] = [
-    new Customer("Bob", "Mazza", "Andrew"),
-    new Customer("Traci", "Mazza", "Hayes")
-  ];
+  private customers: Customer[];
+  apiUrl: string = '../../../assets/test-customer-data.json';
+  headers: HttpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 
-  constructor() { }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
 
-  getCustomers(): Customer[] {
-    return this.customers;
+  getCustomers(): Observable<Customer[]> {
+    return this.httpClient.get(this.apiUrl).subscribe(data:  =>
+      this.customers = data;
+    )
+  }
+
+  // Handle Errors 
+  error(error: HttpErrorResponse) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = error.error.message;
+    } else {
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
   }
 }

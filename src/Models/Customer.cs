@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 
 namespace SimpleCRM.Models
 {
+    [Table("customer")]
     public class Customer
     {
         private Guid id;
@@ -18,7 +19,8 @@ namespace SimpleCRM.Models
         private DateTime changeDate;
 
         [Column("cst_id")]
-        public Guid Id { get => id; set => id = value; }
+        [Key]
+        public Guid CustomerId { get => id; set => id = value; }
 
         [Column("cst_first_name")]
         public string FirstName { get => firstName; set => firstName = value; }
@@ -37,9 +39,13 @@ namespace SimpleCRM.Models
         public DateTime AddDate { get => addDate; set => addDate = value; }
 
         [Column("cst_change_user")]
+        [AllowNull]
         public string ChangeUser { get => changeUser; set => changeUser = value; }
 
         [Column("cst_change_date")]
+        [AllowNull]
         public DateTime ChangeDate { get => changeDate; set => changeDate = value; }
+
+        public List<EmailAddress> EmailAddresses { get; } = new List<EmailAddress>();
     }
 }

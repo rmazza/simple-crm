@@ -1,0 +1,30 @@
+[
+  {
+    "id": "ECCC9B8F-38FA-457C-8B1E-1A3AFED84CC7",
+    "firstName": "Hulk",
+    "lastName": "Hogan",
+    "middleName": "Larry",
+    "email": "hulk.hogan@mailinator.com"
+  },
+  {
+    "id": "39AEE29C-9956-4997-89A5-44EDB3FA3B2D",
+    "firstName": "Ultimate",
+    "lastName": "Warrior",
+    "middleName": "Henry",
+    "email": "ultimate.warrior@mailinator.com"
+  },
+  {
+    "id": "D8A411D2-7D01-496D-8AF5-3651B6FC5719",
+    "firstName": "Randy",
+    "lastName": "Savage",
+    "middleName": "Macho Man",
+    "email": "randy.savage@mailinator.com"
+  },
+  {
+    "id": "6FA34001-3B13-41F2-B0A1-30C5A217A1BA",
+    "firstName": "Under",
+    "lastName": "Taker",
+    "middleName": "Barbara",
+    "email": "under.taker@mailinator.com"
+  }
+]
