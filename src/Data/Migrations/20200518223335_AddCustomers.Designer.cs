@@ -10,7 +10,7 @@ using SimpleCRM.Data;
 namespace SimpleCRM.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200518001452_AddCustomers")]
+    [Migration("20200518223335_AddCustomers")]
     partial class AddCustomers
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -319,7 +319,7 @@ namespace SimpleCRM.Data.Migrations
                         .HasColumnName("cst_add_user")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ChangeDate")
+                    b.Property<DateTime?>("ChangeDate")
                         .HasColumnName("cst_change_date")
                         .HasColumnType("datetime2");
 
@@ -360,7 +360,7 @@ namespace SimpleCRM.Data.Migrations
                         .HasColumnName("eml_add_user")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ChangeDate")
+                    b.Property<DateTime?>("ChangeDate")
                         .HasColumnName("eml_change_date")
                         .HasColumnType("datetime2");
 
@@ -377,7 +377,7 @@ namespace SimpleCRM.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("EmailTypeId")
-                        .HasColumnName("eml_type_id")
+                        .HasColumnName("eml_emt_id")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("EmailId");
@@ -405,7 +405,7 @@ namespace SimpleCRM.Data.Migrations
                         .HasColumnName("emt_add_user")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ChangeDate")
+                    b.Property<DateTime?>("ChangeDate")
                         .HasColumnName("emt_change_date")
                         .HasColumnType("datetime2");
 

@@ -18,7 +18,7 @@ namespace SimpleCRM.Data.Migrations
                     cst_add_user = table.Column<string>(nullable: true),
                     cst_add_date = table.Column<DateTime>(nullable: false),
                     cst_change_user = table.Column<string>(nullable: true),
-                    cst_change_date = table.Column<DateTime>(nullable: false)
+                    cst_change_date = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -34,7 +34,7 @@ namespace SimpleCRM.Data.Migrations
                     emt_add_user = table.Column<string>(nullable: true),
                     emt_add_date = table.Column<DateTime>(nullable: false),
                     emt_change_user = table.Column<string>(nullable: true),
-                    emt_change_date = table.Column<DateTime>(nullable: false)
+                    emt_change_date = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -47,12 +47,12 @@ namespace SimpleCRM.Data.Migrations
                 {
                     eml_id = table.Column<Guid>(nullable: false),
                     eml_cst_id = table.Column<Guid>(nullable: false),
-                    eml_type_id = table.Column<Guid>(nullable: false),
+                    eml_emt_id = table.Column<Guid>(nullable: false),
                     eml_address = table.Column<string>(nullable: true),
                     eml_add_user = table.Column<string>(nullable: true),
                     eml_add_date = table.Column<DateTime>(nullable: false),
                     eml_change_user = table.Column<string>(nullable: true),
-                    eml_change_date = table.Column<DateTime>(nullable: false)
+                    eml_change_date = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -64,8 +64,8 @@ namespace SimpleCRM.Data.Migrations
                         principalColumn: "cst_id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_email_email_type_eml_type_id",
-                        column: x => x.eml_type_id,
+                        name: "FK_email_email_type_eml_emt_id",
+                        column: x => x.eml_emt_id,
                         principalTable: "email_type",
                         principalColumn: "emt_id",
                         onDelete: ReferentialAction.NoAction);
@@ -77,9 +77,9 @@ namespace SimpleCRM.Data.Migrations
                 column: "eml_cst_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_email_eml_type_id",
+                name: "IX_email_eml_emt_id",
                 table: "email",
-                column: "eml_type_id");
+                column: "eml_emt_id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

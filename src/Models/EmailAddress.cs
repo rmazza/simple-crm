@@ -16,7 +16,7 @@ namespace SimpleCRM.Models
         private string addUser;
         private DateTime addDate;
         private string changeUser;
-        private DateTime changeDate;
+        private DateTime? changeDate;
         private Guid emailTypeId;
 
         [Column("eml_id")]
@@ -26,7 +26,7 @@ namespace SimpleCRM.Models
         [Column("eml_cst_id")]
         public Guid CustomerId { get => customerId; set => customerId = value; }
 
-        [Column("eml_type_id")]
+        [Column("eml_emt_id")]
         public Guid EmailTypeId { get => emailTypeId; set => emailTypeId = value; }
 
         [Column("eml_address")]
@@ -45,7 +45,7 @@ namespace SimpleCRM.Models
 
         [Column("eml_change_date")]
         [AllowNull]
-        public DateTime ChangeDate { get => changeDate; set => changeDate = value; }
+        public DateTime? ChangeDate { get => changeDate; set => changeDate = value; }
 
         
         public EmailType EmailType { get; set; }

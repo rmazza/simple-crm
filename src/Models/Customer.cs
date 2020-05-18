@@ -16,7 +16,7 @@ namespace SimpleCRM.Models
         private string addUser;
         private DateTime addDate = DateTime.Now;
         private string changeUser;
-        private DateTime changeDate;
+        private DateTime? changeDate;
 
         [Column("cst_id")]
         [Key]
@@ -44,7 +44,7 @@ namespace SimpleCRM.Models
 
         [Column("cst_change_date")]
         [AllowNull]
-        public DateTime ChangeDate { get => changeDate; set => changeDate = value; }
+        public DateTime? ChangeDate { get => changeDate; set => changeDate = value; }
 
         public List<EmailAddress> EmailAddresses { get; } = new List<EmailAddress>();
     }

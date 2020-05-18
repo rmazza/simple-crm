@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SimpleCRM.Controllers
 {
-    [Route("api/v1/graphql")]
     [ApiController]
+    [Route("[controller]")]
     public class GraphqlController : ControllerBase
     {
 

@@ -17,11 +17,11 @@ export class CustomerService {
     private httpClient: HttpClient
   ) { }
 
-  getCustomers(): Observable<Customer[]> {
-    return this.httpClient.get(this.apiUrl).subscribe(data:  =>
-      this.customers = data;
-    )
-  }
+  //getCustomers(): Observable<Customer[]> {
+  //  return this.httpClient.get(this.apiUrl).subscribe(data:  =>
+  //    this.customers = data;
+  //  )
+  //}
 
   // Handle Errors 
   error(error: HttpErrorResponse) {

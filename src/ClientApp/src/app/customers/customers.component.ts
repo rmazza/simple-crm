@@ -19,7 +19,7 @@ export class CustomersComponent implements OnInit {
   constructor(private customerService: CustomerService) { }
 
   ngOnInit() {
-    this.customers = this.customerService.getCustomers();
+    //this.customers = this.customerService.getCustomers();
   }
 
   selectCustomer(customer: Customer) { this.selectedCustomer = customer; }
