@@ -1,4 +1,5 @@
-﻿using GraphQL.Types;
+﻿using GraphQL;
+using GraphQL.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SimpleCRM.Graphql
 {
-    public class ApiSchema
+    public class ApiSchema : Schema
     {
         private ISchema _schema { get; set; }
         public ISchema GraphQLSchema
@@ -17,11 +18,12 @@ namespace SimpleCRM.Graphql
             }
         }
 
-        public ApiSchema()
+        public ApiSchema(IDependencyResolver provider) : base(provider)
         {
+            
             this._schema = Schema.For(@"
           type Customer {
-            customerId: ID
+            customerId: String!
             firstName: String!,
             lastName: String!,
             middleName: String!,
