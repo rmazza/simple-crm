@@ -21,10 +21,14 @@ namespace SimpleCRM.Graphql
         {
             this._schema = Schema.For(@"
           type Customer {
-            id: ID
+            customerId: ID
             firstName: String!,
             lastName: String!,
-            middleName: String!
+            middleName: String!,
+            addUser: String!,
+            addDate: Date!,
+            changeUser: String,
+            changeDate: Date
           }
 
           type Mutation {
@@ -32,8 +36,7 @@ namespace SimpleCRM.Graphql
           }
 
           type Query {
-              customers: [Customer],
-              customer(id: ID): Customer
+              customers: Customer
           }
       ", _ =>
             {
