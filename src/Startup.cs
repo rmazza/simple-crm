@@ -10,6 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using GraphQL.Types;
 using SimpleCRM.Graphql;
+using SimpleCRM.Repository;
+using GraphQL;
+using Microsoft.AspNetCore.Http;
 
 namespace SimpleCRM
 {
@@ -45,7 +48,11 @@ namespace SimpleCRM
                 configuration.RootPath = "ClientApp/dist";
             });
 
+            services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
+
             services.AddSingleton<ISchema>(new ApiSchema());
+            services.AddSingleton<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,6 +89,8 @@ namespace SimpleCRM
                     pattern: "{controller}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+
 
             app.UseSpa(spa =>
             {
