@@ -18,7 +18,7 @@ namespace SimpleCRM.Graphql
             }
         }
 
-        public ApiSchema(IDependencyResolver provider) : base(provider)
+        public ApiSchema()
         {
             
             this._schema = Schema.For(@"

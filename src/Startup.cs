@@ -8,6 +8,8 @@ using SimpleCRM.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using GraphQL.Types;
+using SimpleCRM.Graphql;
 
 namespace SimpleCRM
 {
@@ -42,6 +44,8 @@ namespace SimpleCRM
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddSingleton<ISchema>(new ApiSchema());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
