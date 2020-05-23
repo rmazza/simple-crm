@@ -1,18 +1,12 @@
 ﻿using GraphQL;
-using Microsoft.Extensions.Logging;
-using SimpleCRM.Data;
 using SimpleCRM.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using SimpleCRM.Repository;
+using GraphQL.Types;
 
 namespace SimpleCRM.Graphql
 {
-    public class Query
+    public class ApiQuery : ObjectGraphType<object>
     {
-
-
         [GraphQLMetadata("customers")]
         public Customer GetCustomers()
         {
