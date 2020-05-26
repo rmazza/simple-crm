@@ -1,16 +1,23 @@
-﻿using GraphQL;
+﻿using GraphQL.Types;
+using SimpleCRM.Data;
 using SimpleCRM.Models;
-using System;
-using GraphQL.Types;
+using SimpleCRM.Repository;
+using SimpleCRM.Types;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SimpleCRM.Graphql
 {
-    public class ApiQuery : ObjectGraphType<object>
+    public class ApiQuery : ObjectGraphType
     {
-        [GraphQLMetadata("customers")]
-        public Customer GetCustomers()
+        public ApiQuery(ICustomerRepository customerRepo)
         {
-            return new Customer { CustomerId = Guid.NewGuid(), FirstName = "Bob" };
+            Field<ListGraphType<CustomerType>, List<Customer>>()
+                .Name("Customers")
+                .ResolveAsync(ctx =>
+                {
+                    return customerRepo.GetCustomers();
+                });
         }
     }
 }

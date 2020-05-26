@@ -1,10 +1,11 @@
 ﻿using SimpleCRM.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SimpleCRM.Repository
 {
     public interface ICustomerRepository
     {
-        IEnumerable<Customer> GetCustomers();
+        Task<List<Customer>> GetCustomers();
     }
 }

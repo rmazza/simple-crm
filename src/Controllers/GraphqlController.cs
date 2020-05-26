@@ -1,8 +1,10 @@
 ﻿using GraphQL;
+using GraphQL.Http;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Mvc;
 using SimpleCRM.Data;
 using SimpleCRM.Graphql;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace SimpleCRM.Controllers
@@ -12,15 +14,20 @@ namespace SimpleCRM.Controllers
     public class GraphqlController : ControllerBase
     {
         private readonly ISchema _schema;
-        public GraphqlController(ISchema schema)
+        private readonly IDocumentExecuter _documentExecuter;
+        private readonly IDocumentWriter _documentWriter;
+
+        public GraphqlController(ISchema schema, IDocumentExecuter documentExecuter, IDocumentWriter documentWriter)
         {
             _schema = schema;
+            _documentExecuter = documentExecuter;
+            _documentWriter = documentWriter;
         }
 
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] GraphQLQuery query)
         {
-            var schema = new ApiSchema();
+           
             var inputs = query.Variables.ToInputs();
 
             var result = await new DocumentExecuter().ExecuteAsync(_ =>

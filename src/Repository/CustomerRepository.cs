@@ -1,4 +1,5 @@
-﻿using SimpleCRM.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SimpleCRM.Data;
 using SimpleCRM.Models;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,9 @@ namespace SimpleCRM.Repository
             _dbContext = dbContext;
         }
 
-        public IEnumerable<Customer> GetCustomers()
+        public Task<List<Customer>> GetCustomers()
         {
-            return _dbContext.Customers.ToList();
+            return _dbContext.Customers.ToListAsync();
         }
     }
 }

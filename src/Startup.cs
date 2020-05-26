@@ -13,6 +13,8 @@ using SimpleCRM.Graphql;
 using SimpleCRM.Repository;
 using GraphQL;
 using Microsoft.AspNetCore.Http;
+using GraphQL.Http;
+using SimpleCRM.Types;
 
 namespace SimpleCRM
 {
@@ -48,10 +50,14 @@ namespace SimpleCRM
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
-
-            services.AddSingleton<ISchema>(new ApiSchema());
             services.AddSingleton<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
+            services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
+            services.AddSingleton<IDocumentWriter, DocumentWriter>();
+            services.AddSingleton<ISchema, ApiSchema>();
+
+            services.AddScoped<ApiQuery>();
+            services.AddScoped<CustomerType>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
