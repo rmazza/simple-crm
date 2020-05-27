@@ -7,7 +7,7 @@ namespace SimpleCRM.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
+            migrationBuilder.CreateTable(a
                 name: "customer",
                 columns: table => new
                 {
@@ -15,9 +15,9 @@ namespace SimpleCRM.Data.Migrations
                     cst_first_name = table.Column<string>(nullable: true),
                     cst_middle_name = table.Column<string>(nullable: true),
                     cst_last_name = table.Column<string>(nullable: true),
-                    cst_add_user = table.Column<string>(nullable: true),
+                    cst_add_user = table.Column<Guid>(nullable: false),
                     cst_add_date = table.Column<DateTime>(nullable: false),
-                    cst_change_user = table.Column<string>(nullable: true),
+                    cst_change_user = table.Column<Guid>(nullable: true),
                     cst_change_date = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
@@ -31,9 +31,9 @@ namespace SimpleCRM.Data.Migrations
                 {
                     emt_id = table.Column<Guid>(nullable: false),
                     emt_type = table.Column<string>(nullable: true),
-                    emt_add_user = table.Column<string>(nullable: true),
+                    emt_add_user = table.Column<Guid>(nullable: false),
                     emt_add_date = table.Column<DateTime>(nullable: false),
-                    emt_change_user = table.Column<string>(nullable: true),
+                    emt_change_user = table.Column<Guid>(nullable: true),
                     emt_change_date = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
@@ -49,9 +49,9 @@ namespace SimpleCRM.Data.Migrations
                     eml_cst_id = table.Column<Guid>(nullable: false),
                     eml_emt_id = table.Column<Guid>(nullable: false),
                     eml_address = table.Column<string>(nullable: true),
-                    eml_add_user = table.Column<string>(nullable: true),
+                    eml_add_user = table.Column<Guid>(nullable: false),
                     eml_add_date = table.Column<DateTime>(nullable: false),
-                    eml_change_user = table.Column<string>(nullable: true),
+                    eml_change_user = table.Column<Guid>(nullable: true),
                     eml_change_date = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>

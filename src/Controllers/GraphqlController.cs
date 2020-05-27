@@ -30,14 +30,14 @@ namespace SimpleCRM.Controllers
            
             var inputs = query.Variables.ToInputs();
 
-            var result = await new DocumentExecuter().ExecuteAsync(_ =>
+            var result = await _documentExecuter.ExecuteAsync(_ =>
             {
                 _.Schema = _schema;
                 _.Query = query.Query;
                 _.OperationName = query.OperationName;
                 _.Inputs = inputs;
             });
-
+            
             if (result.Errors?.Count > 0)
             {
                 return BadRequest();

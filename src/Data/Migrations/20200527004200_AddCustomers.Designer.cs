@@ -10,7 +10,7 @@ using SimpleCRM.Data;
 namespace SimpleCRM.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200518223335_AddCustomers")]
+    [Migration("20200527004200_AddCustomers")]
     partial class AddCustomers
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -315,17 +315,17 @@ namespace SimpleCRM.Data.Migrations
                         .HasColumnName("cst_add_date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("AddUser")
+                    b.Property<Guid>("AddUser")
                         .HasColumnName("cst_add_user")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ChangeDate")
                         .HasColumnName("cst_change_date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ChangeUser")
+                    b.Property<Guid?>("ChangeUser")
                         .HasColumnName("cst_change_user")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("FirstName")
                         .HasColumnName("cst_first_name")
@@ -356,17 +356,17 @@ namespace SimpleCRM.Data.Migrations
                         .HasColumnName("eml_add_date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("AddUser")
+                    b.Property<Guid>("AddUser")
                         .HasColumnName("eml_add_user")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ChangeDate")
                         .HasColumnName("eml_change_date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ChangeUser")
+                    b.Property<Guid?>("ChangeUser")
                         .HasColumnName("eml_change_user")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CustomerId")
                         .HasColumnName("eml_cst_id")
@@ -401,17 +401,17 @@ namespace SimpleCRM.Data.Migrations
                         .HasColumnName("emt_add_date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("AddUser")
+                    b.Property<Guid>("AddUser")
                         .HasColumnName("emt_add_user")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ChangeDate")
                         .HasColumnName("emt_change_date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ChangeUser")
+                    b.Property<Guid?>("ChangeUser")
                         .HasColumnName("emt_change_user")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Type")
                         .HasColumnName("emt_type")

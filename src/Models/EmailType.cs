@@ -9,9 +9,9 @@ namespace SimpleCRM.Models
     public class EmailType
     {
         private DateTime? changeDate;
-        private string changeUser;
+        private Guid? changeUser;
         private DateTime addDate;
-        private string addUser;
+        private Guid addUser;
         private string type;
         private Guid emailTypeId;
 
@@ -23,7 +23,7 @@ namespace SimpleCRM.Models
         public string Type { get => type; set => type = value; }
 
         [Column("emt_add_user")]
-        public string AddUser { get => addUser; set => addUser = value; }
+        public Guid AddUser { get => addUser; set => addUser = value; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("emt_add_date")]
@@ -31,7 +31,7 @@ namespace SimpleCRM.Models
 
         [Column("emt_change_user")]
         [AllowNull]
-        public string ChangeUser { get => changeUser; set => changeUser = value; }
+        public Guid? ChangeUser { get => changeUser; set => changeUser = value; }
 
         [Column("emt_change_date")]
         [AllowNull]

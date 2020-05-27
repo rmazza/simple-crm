@@ -13,9 +13,9 @@ namespace SimpleCRM.Models
         private Guid id;
         private string email;
         private Guid customerId;
-        private string addUser;
+        private Guid addUser;
         private DateTime addDate;
-        private string changeUser;
+        private Guid? changeUser;
         private DateTime? changeDate;
         private Guid emailTypeId;
 
@@ -33,7 +33,7 @@ namespace SimpleCRM.Models
         public string Email { get => email; set => email = value; }
 
         [Column("eml_add_user")]
-        public string AddUser { get => addUser; set => addUser = value; }
+        public Guid AddUser { get => addUser; set => addUser = value; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("eml_add_date")]
@@ -41,7 +41,7 @@ namespace SimpleCRM.Models
 
         [Column("eml_change_user")]
         [AllowNull]
-        public string ChangeUser { get => changeUser; set => changeUser = value; }
+        public Guid? ChangeUser { get => changeUser; set => changeUser = value; }
 
         [Column("eml_change_date")]
         [AllowNull]

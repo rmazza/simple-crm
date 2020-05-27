@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,9 +14,9 @@ namespace SimpleCRM.Models
         private string firstName;
         private string middleName;
         private string lastName;
-        private string addUser;
+        private Guid addUser;
         private DateTime addDate = DateTime.Now;
-        private string changeUser;
+        private Guid? changeUser;
         private DateTime? changeDate;
 
         [Column("cst_id")]
@@ -32,7 +33,7 @@ namespace SimpleCRM.Models
         public string LastName { get => lastName; set => lastName = value; }
 
         [Column("cst_add_user")]
-        public string AddUser { get => addUser; set => addUser = value; }
+        public Guid AddUser { get => addUser; set => addUser = value; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("cst_add_date")]
@@ -40,7 +41,7 @@ namespace SimpleCRM.Models
 
         [Column("cst_change_user")]
         [AllowNull]
-        public string ChangeUser { get => changeUser; set => changeUser = value; }
+        public Guid? ChangeUser { get => changeUser; set => changeUser = value; }
 
         [Column("cst_change_date")]
         [AllowNull]

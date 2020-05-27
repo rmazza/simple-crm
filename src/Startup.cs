@@ -50,12 +50,14 @@ namespace SimpleCRM
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddSingleton<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
+            services.AddScoped<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
             services.AddSingleton<IDocumentWriter, DocumentWriter>();
-            services.AddSingleton<ISchema, ApiSchema>();
+            
 
             services.AddScoped<ApiQuery>();
+            services.AddScoped<ApiMutation>();
+            services.AddScoped<ISchema, ApiSchema>();
             services.AddScoped<CustomerType>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
