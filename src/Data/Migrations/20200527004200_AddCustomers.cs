@@ -7,7 +7,7 @@ namespace SimpleCRM.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(a
+            migrationBuilder.CreateTable(
                 name: "customer",
                 columns: table => new
                 {

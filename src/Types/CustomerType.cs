@@ -14,7 +14,9 @@ namespace SimpleCRM.Types
             Field(c => c.MiddleName).Description("Middle name of the customer");
             Field(c => c.LastName);
             Field(c => c.AddDate);
-            Field(c => c.AddUser);
+            Field(c => c.AddUser, type: typeof(IdGraphType));
+            Field(c => c.ChangeDate, nullable: true);
+            Field(c => c.ChangeUser, type: typeof(IdGraphType), nullable: true);
         }
     }
 }

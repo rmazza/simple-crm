@@ -6,6 +6,7 @@ namespace SimpleCRM.Repository
 {
     public interface ICustomerRepository
     {
-        Task<List<Customer>> GetCustomers();
+        Task<int> AddCustomerAsync(Customer customer);
+        Task<List<Customer>> GetCustomersAsync();
     }
 }

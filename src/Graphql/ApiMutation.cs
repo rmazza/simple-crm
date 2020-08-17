@@ -1,16 +1,19 @@
-﻿using GraphQL;
-using GraphQL.Types;
-using SimpleCRM.Models;
+﻿using GraphQL.Types;
+using SimpleCRM.Repository;
 
 namespace SimpleCRM.Graphql
 {
-    [GraphQLMetadata("Mutation")]
     public class ApiMutation : ObjectGraphType
     {
-        [GraphQLMetadata("addCustomer")]
-        public Customer Add(Customer cst)
+        public ApiMutation(ICustomerRepository customerRepo)
         {
-            return null;
+            //Field<CustomerType>()
+            //    .Name("addCustomer")
+            //    .ResolveAsync(ctx =>
+            //    {
+            //        var customer = ctx.GetArgument<Customer>("customer");
+            //        customerRepo.AddCustomerAsync(customer);
+            //    });
         }
     }
 }

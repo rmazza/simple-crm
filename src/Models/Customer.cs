@@ -19,6 +19,8 @@ namespace SimpleCRM.Models
         private Guid? changeUser;
         private DateTime? changeDate;
 
+        private readonly ApplicationUser _user;
+
         [Column("cst_id")]
         [Key]
         public Guid CustomerId { get => id; set => id = value; }
@@ -35,7 +37,6 @@ namespace SimpleCRM.Models
         [Column("cst_add_user")]
         public Guid AddUser { get => addUser; set => addUser = value; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("cst_add_date")]
         public DateTime AddDate { get => addDate; set => addDate = value; }
 

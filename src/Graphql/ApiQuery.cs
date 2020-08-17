@@ -16,7 +16,7 @@ namespace SimpleCRM.Graphql
                 .Name("Customers")
                 .ResolveAsync(ctx =>
                 {
-                    return customerRepo.GetCustomers();
+                    return customerRepo.GetCustomersAsync();
                 });
         }
     }

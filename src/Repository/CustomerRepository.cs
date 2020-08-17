@@ -11,13 +11,24 @@ namespace SimpleCRM.Repository
     public class CustomerRepository : ICustomerRepository
     {
         private readonly ApplicationDbContext _dbContext;
+        //private readonly ApplicationUser _user;
 
-        public CustomerRepository(ApplicationDbContext dbContext)
+        public CustomerRepository(ApplicationDbContext dbContext /*, ApplicationUser user*/)
         {
             _dbContext = dbContext;
+            //_user = user;
         }
 
-        public Task<List<Customer>> GetCustomers()
+        public Task<int> AddCustomerAsync(Customer customer)
+        {
+            //    customer.AddUser = Guid.Parse(_user.Id);
+            customer.AddDate = DateTime.Now;
+
+            _dbContext.Customers.Add(customer);
+            return _dbContext.SaveChangesAsync();
+        }
+
+        public Task<List<Customer>> GetCustomersAsync()
         {
             return _dbContext.Customers.ToListAsync();
         }
