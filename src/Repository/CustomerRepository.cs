@@ -30,7 +30,12 @@ namespace SimpleCRM.Repository
 
         public Task<List<Customer>> GetCustomersAsync()
         {
-            return _dbContext.Customers.ToListAsync();
+            return _dbContext.Customers.Include(x => x.EmailAddresses).ToListAsync();
+        }
+
+        public Task<List<EmailAddress>> GetEmailAddresses(Guid id)
+        {
+            return _dbContext.EmailAddresses.Where(x => x.EmailId.Equals(id)).ToListAsync();
         }
     }
 }

@@ -59,6 +59,7 @@ namespace SimpleCRM
             services.AddScoped<ApiMutation>();
             services.AddScoped<ISchema, ApiSchema>();
             services.AddScoped<CustomerType>();
+            services.AddScoped<EmailAddressType>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
