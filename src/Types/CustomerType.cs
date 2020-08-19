@@ -1,9 +1,6 @@
 ﻿using GraphQL.Types;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using SimpleCRM.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 
 namespace SimpleCRM.Types
 {
@@ -28,19 +25,6 @@ namespace SimpleCRM.Types
                         return ctx.Source.EmailAddresses;
                     }
                 );
-        }
-    }
-
-    public class EmailAddressType : ObjectGraphType<EmailAddress>
-    {
-        public EmailAddressType()
-        {
-            Name = "Email";
-
-            Field(e => e.EmailId, type: typeof(IdGraphType)).Description("The id of the email");
-            Field(e => e.Email, nullable: true).Description("Email Address");
-
-            
         }
     }
 }

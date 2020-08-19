@@ -43,7 +43,12 @@ namespace SimpleCRM.Controllers
                 return BadRequest();
             }
 
-            return Ok(result);
+            return Ok(new
+            {
+                data = result.Data,
+                errors = result.Errors,
+                query = result.Query
+            });
         }
     }
 }
