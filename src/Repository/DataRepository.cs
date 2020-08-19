@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace SimpleCRM.Repository
 {
-    public class CustomerRepository : ICustomerRepository
+    public class DataRepository : IDataRepository
     {
         private readonly ApplicationDbContext _dbContext;
         //private readonly ApplicationUser _user;
 
-        public CustomerRepository(ApplicationDbContext dbContext /*, ApplicationUser user*/)
+        public DataRepository(ApplicationDbContext dbContext /*, ApplicationUser user*/)
         {
             _dbContext = dbContext;
             //_user = user;
@@ -33,9 +33,9 @@ namespace SimpleCRM.Repository
             return _dbContext.Customers.Include(x => x.EmailAddresses).ThenInclude(x => x.EmailType).ToListAsync();
         }
 
-        public Task<List<EmailAddress>> GetEmailAddresses(Guid id)
+        public Task<List<EmailType>> GetEmailTypes()
         {
-            return _dbContext.EmailAddresses.Where(x => x.EmailId.Equals(id)).ToListAsync();
+            return _dbContext.EmailTypes.ToListAsync();
         }
     }
 }
