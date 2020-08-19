@@ -14,14 +14,4 @@ namespace SimpleCRM.Types
             Field(e => e.EmailType.Type).Name("emailType");
         }
     }
-
-    public class EmailTypeGQLType : ObjectGraphType<EmailType>
-    {
-        public EmailTypeGQLType()
-        {
-            Name = "emailType";
-            Field(et => et.EmailTypeId, type: typeof(IdGraphType)).Description("The id of the email type");
-            Field(et => et.Type);
-        }
-    }
 }

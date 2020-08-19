@@ -16,12 +16,12 @@ namespace SimpleCRM.Graphql
                 {
                     return dataRepo.GetCustomersAsync();
                 });
-            //Field<ListGraphType<EmailTypeGQLType>, List<EmailType>>()
-            //    .Name("emailTypes")
-            //    .ResolveAsync(ctx =>
-            //    {
-            //        return customerRepo.GetEmailTypes();
-            //    });
+            Field<ListGraphType<EmailTypeGQLType>, List<EmailType>>()
+                .Name("emailTypes")
+                .ResolveAsync(ctx =>
+                {
+                    return dataRepo.GetEmailTypes();
+                });
         }
     }
 }
