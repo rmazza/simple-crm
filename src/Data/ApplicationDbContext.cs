@@ -20,7 +20,8 @@ namespace SimpleCRM.Data
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<EmailAddress> EmailAddresses { get; set; }
-
         public DbSet<EmailType> EmailTypes { get; set; }
+        public DbSet<PhoneNumber> PhoneNumbers { get; set; }
+        public DbSet<PhoneType> PhoneTypes { get; set; }
     }
 }

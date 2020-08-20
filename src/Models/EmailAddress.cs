@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
@@ -30,6 +28,7 @@ namespace SimpleCRM.Models
         public Guid EmailTypeId { get => emailTypeId; set => emailTypeId = value; }
 
         [Column("eml_address")]
+        [Required]
         public string Email { get => email; set => email = value; }
 
         [Column("eml_add_user")]

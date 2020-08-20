@@ -5,7 +5,7 @@ namespace SimpleCRM.Graphql
 {
     public class ApiMutation : ObjectGraphType
     {
-        public ApiMutation(IDataRepository customerRepo)
+        public ApiMutation(IDataRepository dataRepo)
         {
             //Field<CustomerType>()
             //    .Name("addCustomer")
