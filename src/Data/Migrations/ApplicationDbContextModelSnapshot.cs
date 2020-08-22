@@ -342,7 +342,7 @@ namespace SimpleCRM.Data.Migrations
                         .HasColumnName("cst_middle_name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CustomerId");
+                    b.HasKey("Id");
 
                     b.ToTable("customer");
                 });

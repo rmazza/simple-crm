@@ -12,7 +12,7 @@ namespace SimpleCRM.Types
             Field(p => p.Id, type: typeof(IdGraphType)).Description("The id of the phone number");
             Field(p => p.Number);
             Field(p => p.Extension, nullable: true);
-            //Field(p => p.Type);
+            Field(p => p.PhoneType.Type);
         }
     }
 }

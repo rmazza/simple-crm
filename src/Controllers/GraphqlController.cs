@@ -46,8 +46,7 @@ namespace SimpleCRM.Controllers
             return Ok(new
             {
                 data = result.Data,
-                errors = result.Errors,
-                query = result.Query
+                errors = result.Errors
             });
         }
     }
