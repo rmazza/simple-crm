@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SimpleCRM.Data.Migrations
 {
-    public partial class PhoneNumber : Migration
+    public partial class AddPhoneNumbers : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -37,6 +37,22 @@ namespace SimpleCRM.Data.Migrations
                 nullable: true);
 
             migrationBuilder.CreateTable(
+                name: "phone_type",
+                columns: table => new
+                {
+                    pht_id = table.Column<Guid>(nullable: false),
+                    pht_type = table.Column<string>(nullable: false),
+                    pht_add_user = table.Column<Guid>(nullable: false),
+                    pht_add_date = table.Column<DateTime>(nullable: false),
+                    pht_change_user = table.Column<Guid>(nullable: true),
+                    pht_change_date = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_phone_type", x => x.pht_id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "phone",
                 columns: table => new
                 {
@@ -59,28 +75,23 @@ namespace SimpleCRM.Data.Migrations
                         principalTable: "customer",
                         principalColumn: "cst_id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "phone_type",
-                columns: table => new
-                {
-                    pht_id = table.Column<Guid>(nullable: false),
-                    pht_type = table.Column<string>(nullable: false),
-                    pht_add_user = table.Column<Guid>(nullable: false),
-                    pht_add_date = table.Column<DateTime>(nullable: false),
-                    pht_change_user = table.Column<Guid>(nullable: true),
-                    pht_change_date = table.Column<DateTime>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_phone_type", x => x.pht_id);
+                    table.ForeignKey(
+                        name: "FK_phone_phone_type_phn_pht_id",
+                        column: x => x.phn_pht_id,
+                        principalTable: "phone_type",
+                        principalColumn: "pht_id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_phone_phn_cst_id",
                 table: "phone",
                 column: "phn_cst_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_phone_phn_pht_id",
+                table: "phone",
+                column: "phn_pht_id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

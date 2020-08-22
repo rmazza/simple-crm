@@ -11,7 +11,7 @@ namespace SimpleCRM.Models
         private Guid id;
         private Guid customerId;
         private string number;
-        private Guid type;
+        private Guid phoneTypeId;
         private string extension;
         private Guid addUser;
         private DateTime addDate = DateTime.Now;
@@ -32,7 +32,7 @@ namespace SimpleCRM.Models
         public string Extension { get => extension; set => extension = value; }
 
         [Column("phn_pht_id")]
-        public Guid Type { get => type; set => type = value; }
+        public Guid PhoneTypeId { get => phoneTypeId; set => phoneTypeId = value; }
 
         [Column("phn_add_user")]
         public Guid AddUser { get => addUser; set => addUser = value; }

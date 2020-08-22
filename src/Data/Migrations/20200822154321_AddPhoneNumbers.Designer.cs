@@ -10,14 +10,14 @@ using SimpleCRM.Data;
 namespace SimpleCRM.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200820135424_PhoneNumber")]
-    partial class PhoneNumber
+    [Migration("20200822154321_AddPhoneNumbers")]
+    partial class AddPhoneNumbers
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.1")
+                .HasAnnotation("ProductVersion", "3.1.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -464,13 +464,15 @@ namespace SimpleCRM.Data.Migrations
                         .HasColumnName("phn_number")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("Type")
+                    b.Property<Guid>("PhoneTypeId")
                         .HasColumnName("phn_pht_id")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("PhoneTypeId");
 
                     b.ToTable("phone");
                 });
@@ -580,6 +582,12 @@ namespace SimpleCRM.Data.Migrations
                     b.HasOne("SimpleCRM.Models.Customer", null)
                         .WithMany("PhoneNumbers")
                         .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SimpleCRM.Models.PhoneType", "PhoneType")
+                        .WithMany()
+                        .HasForeignKey("PhoneTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
