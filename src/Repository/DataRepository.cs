@@ -4,6 +4,7 @@ using SimpleCRM.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace SimpleCRM.Repository
@@ -30,13 +31,20 @@ namespace SimpleCRM.Repository
 
         public Task<List<Customer>> GetCustomersAsync()
         {
-            var test = _dbContext.Customers.Include(x => x.EmailAddresses).Include(x => x.PhoneNumbers).ToList();
-            return _dbContext.Customers.Include(x => x.EmailAddresses).Include(x => x.PhoneNumbers).ToListAsync();
+            return _dbContext.Customers
+                .Include(x => x.EmailAddresses)
+                .Include(x => x.PhoneNumbers)
+                .ToListAsync();
         }
 
         public Task<List<EmailType>> GetEmailTypes()
         {
             return _dbContext.EmailTypes.ToListAsync();
+        }
+
+        public Task<List<PhoneType>> GetPhoneTypes()
+        {
+            return _dbContext.PhoneTypes.ToListAsync();
         }
     }
 }

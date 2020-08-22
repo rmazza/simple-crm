@@ -28,12 +28,12 @@ namespace SimpleCRM.Types
                         return ctx.Source.EmailAddresses;
                     }
                 );
-            //Field<ListGraphType<PhoneNumberType>, List<PhoneNumber>>()
-            //    .Name("phoneNum")
-            //    .Resolve(ctx =>
-            //    {
-            //        return ctx.Source.PhoneNumbers;
-            //    });
+            Field<ListGraphType<PhoneNumberType>, List<PhoneNumber>>()
+                .Name("phoneNum")
+                .Resolve(ctx =>
+                {
+                    return ctx.Source.PhoneNumbers;
+                });
         }
     }
 }
