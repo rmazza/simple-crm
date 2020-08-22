@@ -1,6 +1,8 @@
 ﻿using GraphQL.Types;
 using SimpleCRM.Models;
 using System.Collections.Generic;
+using System.Security.Permissions;
+using System.Threading;
 
 namespace SimpleCRM.Types
 {
@@ -18,6 +20,7 @@ namespace SimpleCRM.Types
             Field(c => c.AddUser, type: typeof(IdGraphType));
             Field(c => c.ChangeDate, nullable: true);
             Field(c => c.ChangeUser, type: typeof(IdGraphType), nullable: true);
+
             Field<ListGraphType<EmailAddressType>, List<EmailAddress>>()
                 .Name("emailAddr")
                 .Resolve(ctx =>
@@ -25,6 +28,12 @@ namespace SimpleCRM.Types
                         return ctx.Source.EmailAddresses;
                     }
                 );
+            //Field<ListGraphType<PhoneNumberType>, List<PhoneNumber>>()
+            //    .Name("phoneNum")
+            //    .Resolve(ctx =>
+            //    {
+            //        return ctx.Source.PhoneNumbers;
+            //    });
         }
     }
 }

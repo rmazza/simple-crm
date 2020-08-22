@@ -61,6 +61,8 @@ namespace SimpleCRM
             services.AddScoped<CustomerType>();
             services.AddScoped<EmailAddressType>();
             services.AddScoped<EmailTypeGQLType>();
+            services.AddScoped<PhoneNumberType>();
+            services.AddScoped<PhoneNumberTypeGQLType>();
             services.AddScoped<IDataRepository, DataRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }

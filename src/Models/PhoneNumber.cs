@@ -47,5 +47,7 @@ namespace SimpleCRM.Models
         [Column("phn_change_date")]
         [AllowNull]
         public DateTime? ChangeDate { get => changeDate; set => changeDate = value; }
+
+        public PhoneType PhoneType { get; set; }
     }
 }
