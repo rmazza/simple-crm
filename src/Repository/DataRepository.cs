@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SimpleCRM.Data;
+using SimpleCRM.Interfaces;
 using SimpleCRM.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace SimpleCRM.Repository
@@ -20,13 +20,15 @@ namespace SimpleCRM.Repository
             //_user = user;
         }
 
-        public Task<int> AddCustomerAsync(Customer customer)
+        public async Task<Guid> AddAsync<T>(T addEntity) where T : IDatabaseTable
         {
             //    customer.AddUser = Guid.Parse(_user.Id);
-            customer.AddDate = DateTime.Now;
+            addEntity.AddDate = DateTime.Now;
+            var addedEntity = _dbContext.Add(addEntity);
 
-            _dbContext.Customers.Add(customer);
-            return _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
+
+            return ((T)addedEntity.Entity).Id;
         }
 
         public Task<List<Customer>> GetCustomersAsync()

@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Http;
 using GraphQL.Http;
 using SimpleCRM.Types;
 using Microsoft.AspNetCore.Mvc;
+using SimpleCRM.Types.InputTypes;
 
 namespace SimpleCRM
 {
@@ -43,6 +44,7 @@ namespace SimpleCRM
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
+            
             services.AddControllersWithViews()
                    .AddJsonOptions(o => o.JsonSerializerOptions.MaxDepth = 64);
             services.AddRazorPages();
@@ -65,6 +67,7 @@ namespace SimpleCRM
             services.AddScoped<EmailTypeGQLType>();
             services.AddScoped<PhoneNumberType>();
             services.AddScoped<PhoneNumberTypeGQLType>();
+            services.AddScoped<CustomerInputType>();
             services.AddScoped<IDataRepository, DataRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
