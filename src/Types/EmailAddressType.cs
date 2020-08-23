@@ -9,9 +9,9 @@ namespace SimpleCRM.Types
         {
             Name = "Email";
 
-            Field(e => e.EmailId, type: typeof(IdGraphType)).Description("The id of the email");
+            Field(e => e.Id, type: typeof(IdGraphType)).Description("The id of the email");
             Field(e => e.Email, nullable: true).Description("Email Address");
-            Field(e => e.EmailType.Type).Name("type");
+            Field(e => e.EmailType.Type);
         }
     }
 }

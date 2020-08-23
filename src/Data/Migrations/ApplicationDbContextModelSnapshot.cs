@@ -303,7 +303,7 @@ namespace SimpleCRM.Data.Migrations
 
             modelBuilder.Entity("SimpleCRM.Models.Customer", b =>
                 {
-                    b.Property<Guid>("CustomerId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("cst_id")
                         .HasColumnType("uniqueidentifier");
@@ -349,7 +349,7 @@ namespace SimpleCRM.Data.Migrations
 
             modelBuilder.Entity("SimpleCRM.Models.EmailAddress", b =>
                 {
-                    b.Property<Guid>("EmailId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("eml_id")
                         .HasColumnType("uniqueidentifier");
@@ -384,7 +384,7 @@ namespace SimpleCRM.Data.Migrations
                         .HasColumnName("eml_emt_id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("EmailId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
 
@@ -395,7 +395,7 @@ namespace SimpleCRM.Data.Migrations
 
             modelBuilder.Entity("SimpleCRM.Models.EmailType", b =>
                 {
-                    b.Property<Guid>("EmailTypeId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("emt_id")
                         .HasColumnType("uniqueidentifier");
@@ -421,7 +421,7 @@ namespace SimpleCRM.Data.Migrations
                         .HasColumnName("emt_type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("EmailTypeId");
+                    b.HasKey("Id");
 
                     b.ToTable("email_type");
                 });

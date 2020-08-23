@@ -12,7 +12,7 @@ namespace SimpleCRM.Types
         {
             Name = "Customer";
 
-            Field(c => c.CustomerId, type: typeof(IdGraphType)).Description("The id of the customer");
+            Field(c => c.Id, type: typeof(IdGraphType)).Description("The id of the customer");
             Field(c => c.FirstName).Description("First name of the customer");
             Field(c => c.MiddleName).Description("Middle name of the customer");
             Field(c => c.LastName);

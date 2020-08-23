@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleCRM.Interfaces;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
@@ -6,7 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace SimpleCRM.Models
 {
     [Table("email")]
-    public class EmailAddress
+    public class EmailAddress : IDatabaseTable
     {
         private Guid id;
         private string email;
@@ -19,7 +20,7 @@ namespace SimpleCRM.Models
 
         [Column("eml_id")]
         [Key]
-        public Guid EmailId { get => id; set => id = value; }
+        public Guid Id { get => id; set => id = value; }
 
         [Column("eml_cst_id")]
         public Guid CustomerId { get => customerId; set => customerId = value; }

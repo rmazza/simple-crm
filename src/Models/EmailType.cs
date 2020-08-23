@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleCRM.Interfaces;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
@@ -6,18 +7,18 @@ using System.Diagnostics.CodeAnalysis;
 namespace SimpleCRM.Models
 {
     [Table("email_type")]
-    public class EmailType
+    public class EmailType : IDatabaseTable
     {
         private DateTime? changeDate;
         private Guid? changeUser;
         private DateTime addDate;
         private Guid addUser;
         private string type;
-        private Guid emailTypeId;
+        private Guid id;
 
         [Key]
         [Column("emt_id")]
-        public Guid EmailTypeId { get => emailTypeId; set => emailTypeId = value; }
+        public Guid Id { get => id; set => id = value; }
 
         [Column("emt_type")]
         public string Type { get => type; set => type = value; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleCRM.Interfaces;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
@@ -6,7 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace SimpleCRM.Models
 {
     [Table("phone_type")]
-    public class PhoneType
+    public class PhoneType : IDatabaseTable
     {
         private Guid id;
         private Guid addUser;

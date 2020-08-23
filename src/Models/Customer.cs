@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using SimpleCRM.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace SimpleCRM.Models
 {
     [Table("customer")]
-    public class Customer
+    public class Customer : IDatabaseTable
     {
         private Guid id;
         private string firstName;
@@ -23,7 +23,7 @@ namespace SimpleCRM.Models
 
         [Column("cst_id")]
         [Key]
-        public Guid CustomerId { get => id; set => id = value; }
+        public Guid Id { get => id; set => id = value; }
 
         [Column("cst_first_name")]
         [Required]

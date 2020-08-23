@@ -8,7 +8,7 @@ namespace SimpleCRM.Types
         public EmailTypeGQLType()
         {
             Name = "EmailType";
-            Field(et => et.EmailTypeId, type: typeof(IdGraphType)).Description("The id of the email type");
+            Field(et => et.Id, type: typeof(IdGraphType)).Description("The id of the email type");
             Field(et => et.Type);
         }
     }
