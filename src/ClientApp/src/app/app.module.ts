@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { DataTablesModule } from 'angular-datatables';
-import { APOLLO_OPTIONS } from 'apollo-angular';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -19,8 +18,6 @@ import { UsersComponent } from './users/users.component';
 import { AddUserComponent } from './users/add-user/add-user.component';
 import { CustomersComponent } from './customers/customers.component';
 import { CustomerDetailComponent } from './customers/customer-detail/customer-detail.component';
-
-import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [
@@ -51,8 +48,7 @@ import { GraphQLModule } from './graphql.module';
       },
       { path: 'customers', component: CustomersComponent, canActivate: [AuthorizeGuard] },
       { path: 'customers/:customerId', component: CustomerDetailComponent, canActivate: [AuthorizeGuard]}
-    ]),
-    GraphQLModule
+    ])
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }

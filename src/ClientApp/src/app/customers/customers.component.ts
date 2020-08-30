@@ -4,29 +4,6 @@ import { RouterModule } from '@angular/router';
 import { CustomerService } from '../services/customer/customer.service';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { Customer } from '../entities/customer';
-import { Apollo, gql } from 'apollo-angular';
-
-const GET_CUSTOMERS = gql`
-{
-  customers {
-      id
-      firstName
-      middleName
-      lastName
-      emailAddr {
-          id
-          type
-          email
-      }
-      phoneNum {
-          id
-          type
-          number
-          extension
-      }
-  }
-}
-`;
 
 @Component({
   selector: 'app-customers',
@@ -36,16 +13,12 @@ const GET_CUSTOMERS = gql`
 })
 export class CustomersComponent implements OnInit {
   pageHeader: string = "CUSTOMERS";
-  customers: Observable<any>;
+  // customers: Observable<any>;
   selectedCustomer: Customer;
 
-  constructor(private customerService: CustomerService, private apollo: Apollo) { }
+  constructor(private customerService: CustomerService) { }
 
   ngOnInit() {
-    this.customers = this.apollo
-      .watchQuery({
-        query: GET_CUSTOMERS,
-      })
-      .valueChanges.pipe(map(result => result.data && result.data.dogs));
+    
   }
 }

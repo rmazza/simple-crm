@@ -1,11 +1,1 @@
-<div class="card" style="width: 18rem;">
-  <ul class="list-group list-group-flush">
-    <li *ngFor="let customer of customers" [value]="customer.lastName" class="list-group-item">
-      <div (click)="selectCustomer(customer)">{{ customer.firstName }}</div>
-    </li>
-  </ul>
-</div>
-
-<div *ngIf="selectedCustomer">
-  {{ getJson() }}
-</div>
+<h3>{{ pageHeader }}</h3>
