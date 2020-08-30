@@ -10,6 +10,9 @@ namespace SimpleCRM.Types.InputTypes
             Name = "CustomerInput";
 
             Field<NonNullGraphType<StringGraphType>>("firstName");
+            Field<NonNullGraphType<StringGraphType>>("lastName");
+            Field<DateGraphType>("dateOfBirth");
+            Field<StringGraphType>("middleName");
         }
     }
 }

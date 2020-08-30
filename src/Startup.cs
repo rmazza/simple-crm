@@ -17,6 +17,7 @@ using GraphQL.Http;
 using SimpleCRM.Types;
 using Microsoft.AspNetCore.Mvc;
 using SimpleCRM.Types.InputTypes;
+using Newtonsoft.Json;
 
 namespace SimpleCRM
 {
@@ -44,10 +45,10 @@ namespace SimpleCRM
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
-            
-            services.AddControllersWithViews()
-                   .AddJsonOptions(o => o.JsonSerializerOptions.MaxDepth = 64);
-            services.AddRazorPages();
+
+            //services.AddControllersWithViews().AddNewtonsoftJson();
+            services.AddControllers().AddNewtonsoftJson();
+            //services.AddRazorPages();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
