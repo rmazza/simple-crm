@@ -27,7 +27,6 @@ namespace SimpleCRM.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] GraphQLQuery query)
         {
-           
             var inputs = query.Variables.ToInputs();
 
             var result = await _documentExecuter.ExecuteAsync(_ =>
