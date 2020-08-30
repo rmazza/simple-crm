@@ -2,15 +2,13 @@
 using GraphQL.Http;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Mvc;
-using SimpleCRM.Data;
 using SimpleCRM.Graphql;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace SimpleCRM.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class GraphqlController : ControllerBase
     {
         private readonly ISchema _schema;
