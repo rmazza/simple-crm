@@ -18,6 +18,7 @@ using SimpleCRM.Types;
 using Microsoft.AspNetCore.Mvc;
 using SimpleCRM.Types.InputTypes;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.SpaServices;
 
 namespace SimpleCRM
 {
