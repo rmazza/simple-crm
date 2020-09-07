@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { CustomerService } from '../services/customer/customer.service';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { Customer } from '../entities/customer';
+import { GraphqlService } from '../services/graphql.service';
 
 @Component({
   selector: 'app-customers',
@@ -16,9 +17,31 @@ export class CustomersComponent implements OnInit {
   // customers: Observable<any>;
   selectedCustomer: Customer;
 
-  constructor(private customerService: CustomerService) { }
+  constructor(
+    private customerService: CustomerService,
+    private graphqlService: GraphqlService) { }
 
   ngOnInit() {
-    
+    const query = `{
+      customers {
+          id
+          firstName
+          middleName
+          lastName
+          emailAddr {
+              id
+              type
+              email
+          }
+          phoneNum {
+              id
+              type
+              number
+              extension
+          }
+      }
+  }`;
+
+  this.graphqlService.sendQuery(query);
   }
 }
