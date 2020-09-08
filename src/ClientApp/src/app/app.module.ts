@@ -18,7 +18,6 @@ import { AddUserComponent } from './users/add-user/add-user.component';
 import { CustomersComponent } from './customers/customers.component';
 import { CustomerDetailComponent } from './customers/customer-detail/customer-detail.component';
 
-import { GraphqlService } from './services/graphql.service';
 
 @NgModule({
   declarations: [
@@ -51,8 +50,7 @@ import { GraphqlService } from './services/graphql.service';
     ])
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
-    { provide: GraphqlService }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

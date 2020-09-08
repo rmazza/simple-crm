@@ -1,1 +1,9 @@
 <h3>{{ pageHeader }}</h3>
+
+<div class="grid">
+<ul *ngFor="let customer of customers">
+    <li>{{ customer.firstName }}</li>
+    <li>{{ customer.middleName }}</li>
+    <li>{{ customer.lastName }}</li>
+</ul>
+</div>

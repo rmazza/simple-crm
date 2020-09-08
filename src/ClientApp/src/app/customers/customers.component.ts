@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { CustomerService } from '../services/customer/customer.service';
-import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { Customer } from '../entities/customer';
-import { GraphqlService } from '../services/graphql.service';
+
+import { GraphqlService } from '../services/grahql/graphql.service';
 
 @Component({
   selector: 'app-customers',
@@ -14,34 +14,24 @@ import { GraphqlService } from '../services/graphql.service';
 })
 export class CustomersComponent implements OnInit {
   pageHeader: string = "CUSTOMERS";
-  // customers: Observable<any>;
   selectedCustomer: Customer;
+  customers: Customer[];
 
   constructor(
     private customerService: CustomerService,
     private graphqlService: GraphqlService) { }
 
   ngOnInit() {
-    const query = `{
+    this.graphqlService.sendQuery(`{
       customers {
           id
           firstName
           middleName
           lastName
-          emailAddr {
-              id
-              type
-              email
-          }
-          phoneNum {
-              id
-              type
-              number
-              extension
-          }
       }
-  }`;
+  }`).subscribe(results => {
+    this.customers = results.data.customers;
+  });
 
-  this.graphqlService.sendQuery(query);
   }
 }
