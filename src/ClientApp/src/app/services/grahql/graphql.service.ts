@@ -16,8 +16,7 @@ export class GraphqlService {
     const body: string = JSON.stringify({ query: q, variables: vars });
     console.log(body);
     return this.httpClient.post('api/graphql', body, { 
-      headers: this.headers,
-      withCredentials: true
+      headers: this.headers
     });
   };
 

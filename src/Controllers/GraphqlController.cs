@@ -1,12 +1,14 @@
 ﻿using GraphQL;
 using GraphQL.Http;
 using GraphQL.Types;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SimpleCRM.Graphql;
 using System.Threading.Tasks;
 
 namespace SimpleCRM.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class GraphqlController : ControllerBase

@@ -13,13 +13,12 @@ const customerQuery: string = `{
   }
 }`;
 
-const addCustomerMutation: string = `{
-  mutation ($customer : CustomerInput!) {
-    addCustomer(customer : $customer) {
-        id
+const addCustomerMutation: string = `
+  mutation ($customer:CustomerInput!) {
+    addCustomer(customer:$customer) {
+      id
     }
-  }
-}`;
+  }`;
 
 @Component({
   selector: 'app-customers',
@@ -52,7 +51,7 @@ export class CustomersComponent implements OnInit {
 
   onSubmit(customerData: any) {
     var data = { customer: customerData };
-    console.log(JSON.stringify(data));
+
     this.graphqlService.sendQuery(addCustomerMutation, data).subscribe(results => {
       console.log(results);
     }, error => {
