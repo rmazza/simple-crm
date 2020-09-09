@@ -1,37 +1,62 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { CustomerService } from '../services/customer/customer.service';
 import { Customer } from '../entities/customer';
-
 import { GraphqlService } from '../services/grahql/graphql.service';
+
+const customerQuery: string = `{
+  customers {
+      id
+      firstName
+      middleName
+      lastName
+  }
+}`;
+
+const addCustomerMutation: string = `{
+  mutation ($customer : CustomerInput!) {
+    addCustomer(customer : $customer) {
+        id
+    }
+  }
+}`;
 
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.css'],
-  providers: [CustomerService]
+  styleUrls: ['./customers.component.css']
 })
 export class CustomersComponent implements OnInit {
   pageHeader: string = "CUSTOMERS";
-  selectedCustomer: Customer;
   customers: Customer[];
+  addCustomerForm: FormGroup;
 
   constructor(
-    private customerService: CustomerService,
-    private graphqlService: GraphqlService) { }
+    private graphqlService: GraphqlService,
+    private formBuilder: FormBuilder) {
+      this.addCustomerForm = this.formBuilder.group({
+        firstName: '',
+        middleName: '',
+        lastName: '',
+        dateOfBirth: ''
+      });
+     }
 
   ngOnInit() {
-    this.graphqlService.sendQuery(`{
-      customers {
-          id
-          firstName
-          middleName
-          lastName
-      }
-  }`).subscribe(results => {
-    this.customers = results.data.customers;
-  });
+    this.graphqlService.sendQuery(customerQuery).subscribe(results => {
+      this.customers = results.data.customers;
+    }, error => {
+      console.log(error);
+    });
+  }
 
+  onSubmit(customerData: any) {
+    var data = { customer: customerData };
+    console.log(JSON.stringify(data));
+    this.graphqlService.sendQuery(addCustomerMutation, data).subscribe(results => {
+      console.log(results);
+    }, error => {
+      console.log(error);
+    });
   }
 }
