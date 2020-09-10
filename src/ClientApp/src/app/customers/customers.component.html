@@ -23,7 +23,9 @@
 
 
 <div class="grid" *ngFor="let customer of customers">
-    <span>{{ customer.firstName }}</span>
-    <span>{{ customer.middleName }}</span>
-    <span>{{ customer.lastName }}</span>
+    <div routerLink="/customers/{{customer.id}}">
+        <span>{{ customer.firstName }}</span>
+        <span>{{ customer.middleName }}</span>
+        <span>{{ customer.lastName }}</span>
+    </div>
 </div>

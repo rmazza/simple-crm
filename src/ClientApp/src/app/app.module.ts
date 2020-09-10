@@ -47,7 +47,7 @@ import { CustomerDetailComponent } from './customers/customer-detail/customer-de
         }], canActivate: [AuthorizeGuard]
       },
       { path: 'customers', component: CustomersComponent, canActivate: [AuthorizeGuard] },
-      { path: 'customers/:customerId', component: CustomerDetailComponent, canActivate: [AuthorizeGuard]}
+      { path: 'customers/:id', component: CustomerDetailComponent, canActivate: [AuthorizeGuard]}
     ])
   ],
   providers: [
