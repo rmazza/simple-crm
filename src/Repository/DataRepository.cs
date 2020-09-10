@@ -25,7 +25,6 @@ namespace SimpleCRM.Repository
 
         public async Task<T> AddAsync<T>(T addEntity) where T : IDatabaseTable
         {
-            //addEntity.AddUser = _userManager.GetUserId(User);
             var identity = _httpContextAccessor.HttpContext.User.Identity as ClaimsIdentity;
             var claim = identity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
             addEntity.AddUser = Guid.Parse(claim.Value);
@@ -35,6 +34,19 @@ namespace SimpleCRM.Repository
             await _dbContext.SaveChangesAsync();
 
             return (T)addedEntity.Entity;
+        }
+
+        public async Task<T> UpdateAsync<T>(T updateEntity) where T : IDatabaseTable
+        {
+            var identity = _httpContextAccessor.HttpContext.User.Identity as ClaimsIdentity;
+            var claim = identity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            updateEntity.ChangeUser = Guid.Parse(claim.Value);
+            updateEntity.ChangeDate = DateTime.Now;
+            var updatedEntity = _dbContext.Update(updateEntity);
+
+            await _dbContext.SaveChangesAsync();
+
+            return (T)updatedEntity.Entity;
         }
 
         public Task<List<Customer>> GetCustomersAsync()

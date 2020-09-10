@@ -9,6 +9,7 @@ namespace SimpleCRM.Repository
     public interface IDataRepository
     {
         Task<T> AddAsync<T>(T addEntity) where T : IDatabaseTable;
+        Task<T> UpdateAsync<T>(T updateEntity) where T : IDatabaseTable;
         Task<List<Customer>> GetCustomersAsync();
         Task<List<EmailType>> GetEmailTypes();
         Task<List<PhoneType>> GetPhoneTypes();

@@ -18,6 +18,15 @@ namespace SimpleCRM.Graphql
                     var customer = ctx.GetArgument<Customer>("customer");
                     return dataRepo.AddAsync(customer);
                 });
+            
+            Field<CustomerType>()
+                .Name("updateCustomer")
+                .Argument<CustomerInputType>("customer", "the customer to add")
+                .Resolve(ctx =>
+                {
+                    var customer = ctx.GetArgument<Customer>("customer");
+                    return dataRepo.UpdateAsync(customer);
+                });
         }
     }
 }
