@@ -2,6 +2,7 @@ import { Email } from './email';
 
 export class Customer {
   private id: string = null;
+  private userId: number;
   public emailAddresses: Email[];
 
   constructor(

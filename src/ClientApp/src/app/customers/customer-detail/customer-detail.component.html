@@ -1,5 +1,11 @@
-<p>customer-detail works!</p>
-<a (click)="edit()" class="btn btn-dark">Edit</a>
+<p>{{ customer.lastName }}, {{ customer.firstName }}</p>
+<button pButton 
+    type="button" 
+    (click)="edit()" 
+    class="pi pi-user-edit" 
+    label="Edit" 
+    iconPos="left"></button>
+    
 <div *ngIf="!editMode && customer">
     <span>{{ customer.firstName }}</span>
     <span>{{ customer.middleName }}</span>

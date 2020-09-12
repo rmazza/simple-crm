@@ -1,15 +1,33 @@
 <h3>{{ pageHeader }}</h3>
 
-<p-table [value]="customers" selectionMode="single">
+<button 
+  routerLink='/customer/add' 
+  label="Add Customer" 
+  pButton 
+  type="button" 
+  icon="pi pi-user-plus" 
+  iconPos="left" ></button>
+
+<p-table [value]="customers" selectionMode="single" [lazy]="true" (onLazyLoad)="loadCustomers($event)"
+  [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [loading]="loading">
   <ng-template pTemplate="header">
       <tr>
+        <th style="width: 4em"></th>
           <th *ngFor="let col of cols">
               {{col.header}}
           </th>
       </tr>
   </ng-template>
   <ng-template pTemplate="body" let-customer>
-      <tr class="prime-ng-row" (click)="selectCustomer(customer)">
+      <tr class="prime-ng-row">
+          <td>
+            <button pButton 
+            pTooltip="Delete"
+            type="button" 
+            icon="pi pi-times"
+            (click)="confirmDelete()"
+            class="p-button-sm p-button-text p-button-danger p-button-outlined p-button-rounded"></button>
+          </td>
           <td *ngFor="let col of cols">
                   {{customer[col.field]}}
           </td>
@@ -18,23 +36,4 @@
 </p-table>
 
 
-<form [formGroup]="addCustomerForm" (ngSubmit)="onSubmit(addCustomerForm.value)">
-    <div class="form-group">
-      <label for="firstName">First Name</label>
-      <input type="text" class="form-control" id="firstName" formControlName="firstName">
-    </div>
-    <div class="form-group">
-      <label for="lastName">Last Name</label>
-      <input type="text" class="form-control" id="lastName" formControlName="lastName">
-    </div>
-    <div class="form-group">
-        <label for="middleName">Middle Name</label>
-        <input type="text" class="form-control" id="middleName" formControlName="middleName">
-    </div>
-    <div class="form-group">
-        <label for="dateOfBirth">Date Of Birth</label>
-        <input type="date" class="form-control" id="dateOfBirth" formControlName="dateOfBirth">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

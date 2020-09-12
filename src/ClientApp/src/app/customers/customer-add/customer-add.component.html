@@ -1,0 +1,21 @@
+<form [formGroup]="addCustomerForm" (ngSubmit)="onSubmit(addCustomerForm.value)">
+    <div class="p-field p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-6">
+        <label for="firstName">First Name</label>
+        <input type="text" pInputText id="firstName" formControlName="firstName">
+      </div>
+      <div class="p-field p-col-12 p-md-6">
+        <label for="lastName">Last Name</label>
+        <input type="text" pInputText id="lastName" formControlName="lastName">
+      </div>
+      <!-- <div class="p-field p-col">
+          <label for="middleName">Middle Name</label>
+          <input type="text" pInputText id="middleName" formControlName="middleName">
+      </div> -->
+      <div class="p-field p-col-12">
+        <p-calendar formControlName="dateOfBirth" showIcon="true" [touchUI]="true" [readonlyInput]="true"></p-calendar>
+      </div>
+    </div>
+    <button pButton type="submit" label="Save" class="p-button-raised"></button>
+</form>
+  
