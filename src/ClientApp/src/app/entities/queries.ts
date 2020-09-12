@@ -10,7 +10,7 @@ export class Queries {
           }`,
         mutation: {
             delete: (id: string) => ({
-                query: `mutation ($id:Id!) {
+                query: `mutation ($id:ID!) {
                             deleteCustomer(id:$id) {
                                 id
                             }

@@ -73,11 +73,16 @@ export class CustomersComponent implements OnInit {
     }, 1000);
   }
 
-  confirmDelete() {
+  confirmDelete(customer: Customer) {
     this.confirmationService.confirm({
         message: 'Are you sure you want to delete this customer?',
         accept: () => {
-            //Actual logic to perform a confirmation
+          let query = Queries.CustomerQueries.mutation.delete(customer["id"]);
+          this.graphqlService.sendQuery(query.query, query.variables).subscribe(results => {
+            console.log(results);
+          }, error => {
+            console.log(error);
+          });
         }
     });
   }
