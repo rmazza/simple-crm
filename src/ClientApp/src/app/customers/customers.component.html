@@ -8,11 +8,12 @@
   icon="pi pi-user-plus" 
   iconPos="left" ></button>
 
-<p-table [value]="customers" selectionMode="single" [lazy]="true" (onLazyLoad)="loadCustomers($event)"
+<p-table [value]="customers" [lazy]="true" (onLazyLoad)="loadCustomers($event)"
   [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [loading]="loading">
   <ng-template pTemplate="header">
       <tr>
-        <th style="width: 4em"></th>
+        <th style="width: 3em"></th>
+        <th style="width: 3em"></th>
           <th *ngFor="let col of cols">
               {{col.header}}
           </th>
@@ -26,7 +27,15 @@
             type="button" 
             icon="pi pi-times"
             (click)="confirmDelete(customer)"
-            class="p-button-sm p-button-text p-button-danger p-button-outlined p-button-rounded"></button>
+            class="p-button-sm p-button-text p-button-danger p-button-outlined"></button>
+          </td>
+          <td>
+            <button pButton 
+            pTooltip="Delete"
+            type="button" 
+            icon="pi pi-user-edit"
+            routerLink="/customer/detail/{{ customer.id }}"
+            class="p-button-sm p-button-text p-button-secondary p-button-outlined"></button>
           </td>
           <td *ngFor="let col of cols">
                   {{customer[col.field]}}

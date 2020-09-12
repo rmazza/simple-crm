@@ -8,7 +8,7 @@ import { GraphqlService } from '../../services/grahql/graphql.service';
 const addCustomerMutation: string = `
   mutation ($customer:CustomerInput!) {
     addCustomer(customer:$customer) {
-      id
+      userId
     }
   }`;
 
@@ -40,9 +40,11 @@ export class CustomerAddComponent implements OnInit {
     var data = { customer: customerData };
 
     this.graphqlService.sendQuery(addCustomerMutation, data).subscribe(results => {
-      this.messageService.add({severity:'success', summary:'Customer Added', detail:'Via MessageService'});
+      this.messageService.add({
+        severity:'success', 
+        summary:'Customer Added', 
+        detail:`Id: ${ results.data.addCustomer.userId }`});
       this.router.navigate(['/customers']);
-      console.log(results);
     }, error => {
       console.log(error);
     });

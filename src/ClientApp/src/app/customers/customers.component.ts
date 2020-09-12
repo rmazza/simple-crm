@@ -79,7 +79,7 @@ export class CustomersComponent implements OnInit {
         accept: () => {
           let query = Queries.CustomerQueries.mutation.delete(customer["id"]);
           this.graphqlService.sendQuery(query.query, query.variables).subscribe(results => {
-            console.log(results);
+            this.customers = this.customers.filter(cust => cust["id"] !== results.data.deleteCustomer.id);
           }, error => {
             console.log(error);
           });
