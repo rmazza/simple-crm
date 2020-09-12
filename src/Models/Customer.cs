@@ -11,6 +11,7 @@ namespace SimpleCRM.Models
     public class Customer : IDatabaseTable
     {
         private Guid id;
+        private Int64 userId;
         private string firstName;
         private string middleName;
         private string lastName;
@@ -24,6 +25,10 @@ namespace SimpleCRM.Models
         [Column("cst_id")]
         [Key]
         public Guid Id { get => id; set => id = value; }
+
+        [Column("cst_user_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Int64 UserId { get => userId; set => userId = value; }
 
         [Column("cst_first_name")]
         [Required]
