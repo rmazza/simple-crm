@@ -1,5 +1,23 @@
 <h3>{{ pageHeader }}</h3>
 
+<p-table [value]="customers" selectionMode="single">
+  <ng-template pTemplate="header">
+      <tr>
+          <th *ngFor="let col of cols">
+              {{col.header}}
+          </th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-customer>
+      <tr class="prime-ng-row" (click)="selectCustomer(customer)">
+          <td *ngFor="let col of cols">
+                  {{customer[col.field]}}
+          </td>
+      </tr>
+  </ng-template>
+</p-table>
+
+
 <form [formGroup]="addCustomerForm" (ngSubmit)="onSubmit(addCustomerForm.value)">
     <div class="form-group">
       <label for="firstName">First Name</label>
@@ -20,12 +38,3 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 
-
-
-<div class="grid" *ngFor="let customer of customers">
-    <div routerLink="/customers/{{customer.id}}">
-        <span>{{ customer.firstName }}</span>
-        <span>{{ customer.middleName }}</span>
-        <span>{{ customer.lastName }}</span>
-    </div>
-</div>

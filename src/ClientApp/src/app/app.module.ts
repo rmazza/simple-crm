@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+import { TableModule } from 'primeng/table';
+
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
@@ -17,7 +19,6 @@ import { UsersComponent } from './users/users.component';
 import { AddUserComponent } from './users/add-user/add-user.component';
 import { CustomersComponent } from './customers/customers.component';
 import { CustomerDetailComponent } from './customers/customer-detail/customer-detail.component';
-
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { CustomerDetailComponent } from './customers/customer-detail/customer-de
     FormsModule,
     ReactiveFormsModule,
     ApiAuthorizationModule,
+    TableModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       {

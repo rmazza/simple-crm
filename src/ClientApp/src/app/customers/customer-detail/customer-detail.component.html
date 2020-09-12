@@ -1,4 +1,8 @@
 <p>customer-detail works!</p>
-<div *ngIf="customer">
-<span>{{ customer.firstName }}</span>
+<a (click)="edit()" class="btn btn-dark">Edit</a>
+<div *ngIf="!editMode && customer">
+    <span>{{ customer.firstName }}</span>
+    <span>{{ customer.middleName }}</span>
+    <span>{{ customer.lastName }}</span>
+    <span>{{ customer.dateOfBirth }}</span>
 </div>

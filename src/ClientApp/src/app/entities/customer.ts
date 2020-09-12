@@ -1,5 +1,8 @@
+import { Email } from './email';
+
 export class Customer {
   private id: string = null;
+  public emailAddresses: Email[];
 
   constructor(
     public firstName: string,
@@ -7,7 +10,7 @@ export class Customer {
     public middleName: string
   ) { }
 
-  getId(): string {
+  public get Id(): string {
     return this.id;
   }
 }

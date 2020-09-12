@@ -12,6 +12,7 @@ query ($id: ID!) {
     firstName
     middleName
     lastName
+    dateOfBirth
   }
 }`
 
@@ -30,15 +31,23 @@ const updateCustomer: string = `
 export class CustomerDetailComponent implements OnInit {
 
   public customer: Customer;
+  public editMode: boolean = false;
 
   constructor(
     private graphqlService: GraphqlService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    let results = this.route.paramMap.pipe(
+    this.route.paramMap.pipe(
       switchMap( (params: ParamMap) =>  
-       this.graphqlService.sendQuery(getCustomer, { id: params.get('id') }))
-    ).subscribe(result => this.customer = result.data );
+        this.graphqlService.sendQuery(getCustomer, { id: params.get('id') })
+      )
+    ).subscribe(result => { 
+      this.customer = result.data.customer;
+    });
+  }
+
+  public edit(): void {
+    this.editMode = !this.editMode;
   }
 }

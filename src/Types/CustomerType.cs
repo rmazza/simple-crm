@@ -15,6 +15,7 @@ namespace SimpleCRM.Types
             Field(c => c.Id, type: typeof(IdGraphType)).Description("The id of the customer");
             Field(c => c.FirstName).Description("First name of the customer");
             Field(c => c.MiddleName).Description("Middle name of the customer");
+            Field(c => c.DateOfBirth, nullable: true);
             Field(c => c.LastName);
             Field(c => c.AddDate);
             Field(c => c.AddUser, type: typeof(IdGraphType));
@@ -22,7 +23,7 @@ namespace SimpleCRM.Types
             Field(c => c.ChangeUser, type: typeof(IdGraphType), nullable: true);
 
             Field<ListGraphType<EmailAddressType>, List<EmailAddress>>()
-                .Name("emailAddr")
+                .Name("emailAddresses")
                 .Resolve(ctx =>
                     {
                         return ctx.Source.EmailAddresses;
