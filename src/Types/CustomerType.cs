@@ -1,8 +1,6 @@
 ﻿using GraphQL.Types;
 using SimpleCRM.Models;
 using System.Collections.Generic;
-using System.Security.Permissions;
-using System.Threading;
 
 namespace SimpleCRM.Types
 {
@@ -12,7 +10,8 @@ namespace SimpleCRM.Types
         {
             Name = "Customer";
 
-            Field(c => c.Id, type: typeof(IdGraphType)).Description("The id of the customer");
+            Field(c => c.Id, type: typeof(IdGraphType)).Description("Id of the customer");
+            Field(c => c.UserId, type: typeof(IntGraphType)).Description("Friendly user id");
             Field(c => c.FirstName).Description("First name of the customer");
             Field(c => c.MiddleName).Description("Middle name of the customer");
             Field(c => c.DateOfBirth, nullable: true);

@@ -10,6 +10,7 @@ namespace SimpleCRM.Repository
     {
         Task<T> AddAsync<T>(T addEntity) where T : IDatabaseTable;
         Task<T> UpdateAsync<T>(T updateEntity) where T : IDatabaseTable;
+        Task<T> DeleteAsync<T>(Guid id) where T : class, IDatabaseTable;
         Task<Customer> GetCustomerAsync(Guid id);
         Task<List<Customer>> GetCustomersAsync();
         Task<List<EmailType>> GetEmailTypes();

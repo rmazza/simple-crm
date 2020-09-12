@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SimpleCRM.Data;
 using SimpleCRM.Interfaces;
 using SimpleCRM.Models;
@@ -18,11 +19,15 @@ namespace SimpleCRM.Repository
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly Guid _loggedInUserId;
 
         public DataRepository(ApplicationDbContext dbContext, IHttpContextAccessor httpContextAccessor)
         {
             _dbContext = dbContext;
             _httpContextAccessor = httpContextAccessor;
+            var identity = _httpContextAccessor.HttpContext.User.Identity as ClaimsIdentity;
+            var claim = identity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            _loggedInUserId = Guid.Parse(claim.Value);
         }
 
         public async Task<T> AddAsync<T>(T addEntity) where T : IDatabaseTable
@@ -49,6 +54,20 @@ namespace SimpleCRM.Repository
             await _dbContext.SaveChangesAsync();
 
             return (T)updatedEntity.Entity;
+        }
+
+        public async Task<T> DeleteAsync<T>(Guid id) where T : class, IDatabaseTable
+        {
+            var entityToDelete = await _dbContext.Set<T>().Where(x => x.Id.Equals(id)).SingleOrDefaultAsync();
+
+            if (entityToDelete == null)
+                throw new KeyNotFoundException($"No id was found that mathced: { id }");
+
+            var deletedEntity = _dbContext.Remove(entityToDelete);
+
+            await _dbContext.SaveChangesAsync();
+
+            return (T)deletedEntity.Entity;
         }
 
         public async Task<Customer> GetCustomerAsync(Guid id)

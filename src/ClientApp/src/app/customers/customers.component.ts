@@ -6,6 +6,7 @@ import { Customer } from '../entities/customer';
 import { GraphqlService } from '../services/grahql/graphql.service';
 import { LazyLoadEvent } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
+import { Queries } from '../entities/queries';
 
 const customerQuery: string = `{
   customers {
