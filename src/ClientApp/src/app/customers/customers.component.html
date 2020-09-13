@@ -8,6 +8,7 @@
   icon="pi pi-user-plus" 
   iconPos="left" ></button>
 
+<br />
 <p-table [value]="customers" [lazy]="true" (onLazyLoad)="loadCustomers($event)"
   [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [loading]="loading">
   <ng-template pTemplate="header">
@@ -31,7 +32,7 @@
           </td>
           <td>
             <button pButton 
-            pTooltip="Delete"
+            pTooltip="Edit"
             type="button" 
             icon="pi pi-user-edit"
             routerLink="/customer/detail/{{ customer.id }}"
