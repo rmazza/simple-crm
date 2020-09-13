@@ -11,3 +11,11 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+h3 {
+  font-family: inherit;
+}
+
+.menu {
+  margin-bottom: 1rem;
+}

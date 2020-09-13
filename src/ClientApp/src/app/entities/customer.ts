@@ -5,13 +5,19 @@ export class Customer {
   private userId: number;
   public emailAddresses: Email[];
 
+
   constructor(
-    public firstName: string,
-    public lastName: string,
-    public middleName: string
+    id: string,
+    userId: number,
+    public firstName?: string,
+    public lastName?: string
   ) { }
 
   public get Id(): string {
     return this.id;
+  }
+
+  public get UserId(): number {
+    return this.userId;
   }
 }

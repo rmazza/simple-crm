@@ -1,13 +1,14 @@
-<h3>{{ pageHeader }}</h3>
+<h4>{{ pageHeader }}</h4>
 
 <button 
-  routerLink='/customer/add' 
+  routerLink='../customer/add' 
   label="Add Customer" 
   pButton 
   type="button" 
-  icon="pi pi-user-plus" 
+  icon="pi pi-user-plus p-button-sm" 
   iconPos="left" ></button>
 
+<br />
 <br />
 <p-table [value]="customers" [lazy]="true" (onLazyLoad)="loadCustomers($event)"
   [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [loading]="loading">

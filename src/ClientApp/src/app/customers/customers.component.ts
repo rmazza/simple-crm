@@ -62,7 +62,7 @@ export class CustomersComponent implements OnInit {
             this.customers = this.datasource;
             this.loading = false;
         }
-    }, 500);
+    }, 1000);
   }
 
   confirmDelete(customer: Customer) {
