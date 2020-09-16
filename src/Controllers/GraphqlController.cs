@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SimpleCRM.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "admin")]
     [ApiController]
     [Route("api/[controller]")]
     public class GraphqlController : ControllerBase

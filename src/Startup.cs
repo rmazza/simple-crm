@@ -39,6 +39,7 @@ namespace SimpleCRM
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddIdentityServer()
@@ -47,9 +48,8 @@ namespace SimpleCRM
             services.AddAuthentication()
                 .AddIdentityServerJwt();
 
-            //services.AddControllersWithViews().AddNewtonsoftJson();
             services.AddControllers().AddNewtonsoftJson();
-            //services.AddRazorPages();
+            
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
