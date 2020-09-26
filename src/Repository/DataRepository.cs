@@ -26,7 +26,7 @@ namespace SimpleCRM.Repository
             _dbContext = dbContext;
             _httpContextAccessor = httpContextAccessor;
             var identity = _httpContextAccessor.HttpContext.User.Identity as ClaimsIdentity;
-            var claim = identity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            var claim = identity.FindFirst("sub");
             _loggedInUserId = Guid.Parse(claim.Value);
         }
 

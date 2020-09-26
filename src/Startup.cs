@@ -19,6 +19,8 @@ using Microsoft.AspNetCore.Mvc;
 using SimpleCRM.Types.InputTypes;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.SpaServices;
+using IdentityServer4.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace SimpleCRM
 {
@@ -38,9 +40,12 @@ namespace SimpleCRM
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddRoles<ApplicationRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddRazorPages();
+
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
 
             services.AddIdentityServer()
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
