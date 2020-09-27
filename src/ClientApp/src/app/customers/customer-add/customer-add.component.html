@@ -1,21 +1,33 @@
 <form [formGroup]="addCustomerForm" (ngSubmit)="onSubmit(addCustomerForm.value)">
-    <div class="p-field p-formgrid p-grid">
-      <div class="p-field p-col-12 p-md-6">
-        <label for="firstName">First Name</label>
-        <input type="text" pInputText id="firstName" formControlName="firstName">
-      </div>
-      <div class="p-field p-col-12 p-md-6">
-        <label for="lastName">Last Name</label>
-        <input type="text" pInputText id="lastName" formControlName="lastName">
-      </div>
-      <!-- <div class="p-field p-col">
-          <label for="middleName">Middle Name</label>
-          <input type="text" pInputText id="middleName" formControlName="middleName">
-      </div> -->
-      <div class="p-field p-col-12">
-        <p-calendar formControlName="dateOfBirth" showIcon="true" [touchUI]="true" [readonlyInput]="true"></p-calendar>
-      </div>
+  <div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-12 p-md-6">
+      <label for="firstName">First Name</label>
+      <input type="text" pInputText id="firstName" formControlName="firstName">
     </div>
-    <button pButton type="submit" label="Save" class="p-button-raised"></button>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="lastName">Last Name</label>
+      <input type="text" pInputText id="lastName" formControlName="lastName">
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <p-calendar formControlName="dateOfBirth" showIcon="true" [touchUI]="true" [readonlyInput]="true"></p-calendar>
+    </div>
+    <div class="p-field p-col-12">
+      <label for="address">Address</label>
+      <textarea id="address" type="text" rows="4" pInputTextarea></textarea>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="city">City</label>
+      <input id="city" type="text" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-3">
+      <label for="state">State</label>
+      <p-dropdown inputId="state" [options]="states" [(ngModel)]="selectedState" placeholder="Select"
+        optionLabel="name"></p-dropdown>
+    </div>
+    <div class="p-field p-col-12 p-md-3">
+      <label for="zip">Zip</label>
+      <input id="zip" type="text" pInputText>
+    </div>
+  </div>
+  <button pButton type="submit" label="Save" class="p-button-raised"></button>
 </form>
-  
