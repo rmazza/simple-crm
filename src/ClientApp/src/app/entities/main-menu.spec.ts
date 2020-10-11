@@ -1,7 +1,7 @@
-import { MainMenu } from './main-menu';
+import { DashboardMenu } from './main-menu';
 
 describe('MainMenu', () => {
   it('should create an instance', () => {
-    expect(new MainMenu()).toBeTruthy();
+    expect(new DashboardMenu()).toBeTruthy();
   });
 });

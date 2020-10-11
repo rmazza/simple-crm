@@ -10,7 +10,7 @@ export class User {
 
   getFullname() {
     let name: string = `${this.firstName}`;
-    if (!this.middleName) {
+    if (this.middleName) {
       name += ` ${this.middleName}`;
     }
     return `${name} ${this.lastName}`
