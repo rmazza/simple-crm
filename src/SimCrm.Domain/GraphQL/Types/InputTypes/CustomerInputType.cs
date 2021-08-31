@@ -14,6 +14,7 @@ namespace SimCrm.Domain.GraphQL.Types.InputTypes
             Field<NonNullGraphType<StringGraphType>>("lastName");
             Field<DateGraphType>("dateOfBirth");
             Field<StringGraphType>("middleName");
+            Field<ListGraphType<EmailAddressInputType>>("emailAddresses");
         }
     }
 }

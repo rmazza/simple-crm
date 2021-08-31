@@ -19,6 +19,9 @@ namespace SimCrm.Domain.Entities
         [Column("eml_type")]
         public EmailType Type { get; set; }
 
+        [Column("eml_address")]
+        public string Email { get; set; }
+
         [Column("eml_add_user")]
         public Guid AddUser { get; set; }
 
