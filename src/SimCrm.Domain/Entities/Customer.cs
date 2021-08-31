@@ -1,8 +1,8 @@
 ﻿using SimCrm.Domain.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
 namespace SimCrm.Domain.Entities
 {
@@ -10,62 +10,43 @@ namespace SimCrm.Domain.Entities
     [Table("customer")]
     public class Customer : IDatabaseTable
     {
-        private Guid id;
-        private Int64 userId;
-        private string firstName;
-        private string middleName;
-        private string lastName;
-        private DateTime? dateOfBirth;
-        private Guid addUser;
-        private DateTime addDate = DateTime.Now;
-        private Guid? changeUser;
-        private DateTime? changeDate;
-        //private readonly ApplicationUser _user;
-
         [Column("cst_id")]
         [Key]
-        public Guid Id { get => id; set => id = value; }
+        public Guid Id { get; set; }
 
         [Column("cst_user_id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Int64 UserId { get => userId; set => userId = value; }
+        public Int64 UserId { get; set; }
 
         [Column("cst_first_name")]
         [Required]
-        public string FirstName { get => firstName; set => firstName = value; }
+        public string FirstName { get; set; }
 
         [Column("cst_middle_name")]
-        public string MiddleName { get => middleName; set => middleName = value; }
+        public string MiddleName { get; set; }
 
         [Column("cst_last_name")]
         [Required]
-        public string LastName { get => lastName; set => lastName = value; }
+        public string LastName { get; set; }
 
         [Column("cst_dob")]
-        public DateTime? DateOfBirth { get => dateOfBirth; set => dateOfBirth = value; }
+        public DateTime? DateOfBirth { get; set; }
 
         [Column("cst_add_user")]
-        public Guid AddUser { get => addUser; set => addUser = value; }
+        public Guid AddUser { get; set; }
 
         [Column("cst_add_date")]
-        public DateTime AddDate { get => addDate; set => addDate = value; }
+        public DateTime AddDate { get; set; }
 
         [Column("cst_change_user")]
-        //[AllowNull]
-        public Guid? ChangeUser { get => changeUser; set => changeUser = value; }
+        public Guid? ChangeUser { get; set; }
 
         [Column("cst_change_date")]
-        //[AllowNull]
-        public DateTime? ChangeDate { get => changeDate; set => changeDate = value; }
+        public DateTime? ChangeDate { get; set; }
 
-        //public List<EmailAddress> EmailAddresses { get; } = new List<EmailAddress>();
+        public List<EmailAddress> EmailAddresses { get; set; }
 
         //public List<PhoneNumber> PhoneNumbers { get; } = new List<PhoneNumber>();
 
-        [JsonConstructor]
-        public Customer()
-        {
-
-        }
     }
 }
