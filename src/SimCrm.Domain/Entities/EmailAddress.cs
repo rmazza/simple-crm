@@ -16,11 +16,14 @@ namespace SimCrm.Domain.Entities
         [Column("eml_cst_key")]
         public Guid CustomerId { get; set; }
 
-        [Column("eml_type")]
-        public EmailType Type { get; set; }
+        [Column("eml_home_address")]
+        public string HomeEmailAddress { get; set; }
 
-        [Column("eml_address")]
-        public string Email { get; set; }
+        [Column("eml_work_address")]
+        public string WorkEmailAddress { get; set; }
+
+        [Column("eml_other_address")]
+        public string OtherEmailAddress { get; set; }
 
         [Column("eml_add_user")]
         public Guid AddUser { get; set; }
