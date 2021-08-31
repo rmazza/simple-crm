@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SimCrm.Domain.Entities
 {
+    [Table("email_address")]
     public class EmailAddress : IDatabaseTable
     {
         [Column("eml_id")]
