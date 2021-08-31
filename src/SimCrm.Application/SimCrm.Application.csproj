@@ -22,6 +22,7 @@
   <ItemGroup>
     <Folder Include="Commands\" />
     <Folder Include="Common\Models\" />
+    <Folder Include="Validators\" />
     <Folder Include="Queries\" />
   </ItemGroup>
 
