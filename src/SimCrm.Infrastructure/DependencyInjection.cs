@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-using Simcrm.Infrastructure.Persistance;
+using Simcrm.Infrastructure.Persistence;
 using SimCrm.Application.Interfaces;
 
 namespace SimCrm.Infrastructure
@@ -12,9 +12,8 @@ namespace SimCrm.Infrastructure
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
-                    configuration.GetConnectionString("PostgresConnection")
-                )
-            );
+                    configuration.GetConnectionString("PostgresConnection"),
+                     b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
