@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.3" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.3" />
     <PackageReference Include="GraphQL" Version="4.6.0" />
     <PackageReference Include="GraphQL.MicrosoftDI" Version="4.6.0" />
     <PackageReference Include="GraphQL.SystemTextJson" Version="4.6.0" />
@@ -22,7 +24,6 @@
   <ItemGroup>
     <Folder Include="Commands\" />
     <Folder Include="Common\Models\" />
-    <Folder Include="Validators\" />
     <Folder Include="Queries\" />
   </ItemGroup>
 
