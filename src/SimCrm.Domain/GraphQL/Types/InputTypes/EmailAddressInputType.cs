@@ -10,8 +10,7 @@ namespace SimCrm.Domain.GraphQL.Types.InputTypes
         {
             Name = "EmailInput";
 
-            Field<EnumerationGraphType<EmailType>>("type");
-            Field<StringGraphType>("email");
+            Field<StringGraphType>("homeEmailAddress");
         }
     }
 }
