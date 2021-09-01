@@ -10,7 +10,7 @@ namespace SimCrm.Domain.Entities
     [Table("customer")]
     public class Customer : IDatabaseTable
     {
-        [Column("cst_id")]
+        [Column("cst_key")]
         [Key]
         public Guid Id { get; set; }
 
