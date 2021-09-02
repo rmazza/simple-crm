@@ -11,6 +11,8 @@ namespace SimCrm.Domain.GraphQL.Types.InputTypes
             Name = "EmailInput";
 
             Field<StringGraphType>("homeEmailAddress");
+            Field<StringGraphType>("workEmailAddress");
+            Field<StringGraphType>("otherEmailAddress");
         }
     }
 }
