@@ -1,4 +1,4 @@
-using GraphQL.Types;
+﻿using GraphQL.Types;
 using Simcrm.Domain.GraphQL.Types;
 using GraphQL;
 using SimCrm.Domain.GraphQL.Types.InputTypes;
@@ -49,6 +49,8 @@ namespace SimCrm.Application.GraphQL.Mutations
                     } 
                     else
                     {
+                        customer.AddDate = DateTime.Now;
+
                         var add = await dbContext.Customers.AddAsync(customer);
                         await dbContext.SaveChangesAsync();
                         return add.Entity;
