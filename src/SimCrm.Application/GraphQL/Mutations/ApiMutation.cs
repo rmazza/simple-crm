@@ -1,4 +1,4 @@
-﻿using GraphQL.Types;
+using GraphQL.Types;
 using Simcrm.Domain.GraphQL.Types;
 using GraphQL;
 using SimCrm.Domain.GraphQL.Types.InputTypes;
@@ -60,41 +60,25 @@ namespace SimCrm.Application.GraphQL.Mutations
                 "updateCustomer",
                 "Updated a current customer",
                 arguments: new QueryArguments(
-                    new QueryArgument<NonNullGraphType<CustomerInputType>> { Name = "customer" }),
+                    new QueryArgument<NonNullGraphType<CustomerUpdateInputType>> { Name = "customer" }),
                 resolve: async context =>
                 {
                     var dbContext = context.RequestServices.GetRequiredService<IApplicationDbContext>();
                     var validator = context.RequestServices.GetService<IValidator<Customer>>();
 
                     var customer = context.GetArgument<Customer>("customer");
+                    var dbCustomer = await dbContext.Customers.FirstOrDefaultAsync(c => c.UserId == customer.UserId);
 
-                    var cst = await dbContext.Customers.FirstOrDefaultAsync(c => c.UserId == customer.UserId);
+                    dbCustomer.FirstName = customer.FirstName;
+                    dbCustomer.LastName = customer.LastName;
+                    dbCustomer.MiddleName = customer.MiddleName;
+                    dbCustomer.DateOfBirth = customer.DateOfBirth;
+                    dbCustomer.ChangeDate = DateTime.Now;
 
-                    if (!string.IsNullOrEmpty(customer.FirstName))
-                    {
-                        cst.FirstName = customer.FirstName;
-                    }
-
-                    if (!string.IsNullOrEmpty(customer.LastName))
-                    {
-                        cst.LastName = customer.LastName;
-                    }
-
-                    if (!string.IsNullOrEmpty(customer.MiddleName))
-                    {
-                        cst.MiddleName = customer.MiddleName;
-                    }
-
-                    if (customer.DateOfBirth != null)
-                    {
-                        cst.DateOfBirth = customer.DateOfBirth;
-                    }
-
-                    cst.ChangeDate = DateTime.Now;
-
-                    dbContext.Customers.Update(cst);
+                    dbContext.Customers.Update(dbCustomer);
                     await dbContext.SaveChangesAsync();
-                    return cst;
+
+                    return dbCustomer;
                 });
         }
     }
