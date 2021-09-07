@@ -10,6 +10,7 @@ namespace SimCrm.Domain.GraphQL.Types.InputTypes
         {
             Name = "CustomerInput";
 
+            Field<IntGraphType>("userId");
             Field<NonNullGraphType<StringGraphType>>("firstName");
             Field<NonNullGraphType<StringGraphType>>("lastName");
             Field<DateGraphType>("dateOfBirth");

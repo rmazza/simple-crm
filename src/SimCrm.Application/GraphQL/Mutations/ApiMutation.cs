@@ -7,6 +7,9 @@ using SimCrm.Application.Interfaces;
 using SimCrm.Domain.Entities;
 using FluentValidation;
 using Microsoft.Extensions.Logging;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace SimCrm.Application.GraphQL.Mutations
 {
@@ -50,6 +53,48 @@ namespace SimCrm.Application.GraphQL.Mutations
                         await dbContext.SaveChangesAsync();
                         return add.Entity;
                     }
+                });
+
+            FieldAsync(
+                typeof(CustomerType),
+                "updateCustomer",
+                "Updated a current customer",
+                arguments: new QueryArguments(
+                    new QueryArgument<NonNullGraphType<CustomerInputType>> { Name = "customer" }),
+                resolve: async context =>
+                {
+                    var dbContext = context.RequestServices.GetRequiredService<IApplicationDbContext>();
+                    var validator = context.RequestServices.GetService<IValidator<Customer>>();
+
+                    var customer = context.GetArgument<Customer>("customer");
+
+                    var cst = await dbContext.Customers.FirstOrDefaultAsync(c => c.UserId == customer.UserId);
+
+                    if (!string.IsNullOrEmpty(customer.FirstName))
+                    {
+                        cst.FirstName = customer.FirstName;
+                    }
+
+                    if (!string.IsNullOrEmpty(customer.LastName))
+                    {
+                        cst.LastName = customer.LastName;
+                    }
+
+                    if (!string.IsNullOrEmpty(customer.MiddleName))
+                    {
+                        cst.MiddleName = customer.MiddleName;
+                    }
+
+                    if (customer.DateOfBirth != null)
+                    {
+                        cst.DateOfBirth = customer.DateOfBirth;
+                    }
+
+                    cst.ChangeDate = DateTime.Now;
+
+                    dbContext.Customers.Update(cst);
+                    await dbContext.SaveChangesAsync();
+                    return cst;
                 });
         }
     }
