@@ -1,10 +1,10 @@
 ﻿using GraphQL.Types;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Simcrm.Domain.GraphQL.Types;
 using SimCrm.Application.Interfaces;
 using SimCrm.Domain.Entities;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Simcrm.Application.GraphQL.Query
 {
@@ -12,12 +12,11 @@ namespace Simcrm.Application.GraphQL.Query
     {
         public ApiQuery()
         {
-            Field<ListGraphType<CustomerType>, IEnumerable<Customer>>()
-                .Name("customers")
-                .Resolve(ctx =>
-                {
-                    return ctx.RequestServices.GetRequiredService<IApplicationDbContext>().Customers.ToList();
-                });
+            FieldAsync<ListGraphType<CustomerType>, IEnumerable<Customer>>(
+                name: "customers",
+                description: "Returns all customers",
+                arguments: null,
+                resolve: async ctx => await ctx.RequestServices.GetRequiredService<IApplicationDbContext>().Customers.ToListAsync());
         }
     }
 }
