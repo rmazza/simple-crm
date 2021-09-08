@@ -18,6 +18,7 @@ namespace Application.IntegrationTests.GraphQL.Customers.Queries
     public class GetCustomerTests : TestBase
     {
         [Test]
+        [Category("Customer")]
         public async Task GetCustomerTests_ShouldReturnAllCustomers()
         {
             //Arrange 
